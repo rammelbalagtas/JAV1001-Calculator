@@ -20,3 +20,8 @@ Prior to running the app, make sure the following is properly setup:
 
 Once all the above conditions are satisfied, just click the 'Run' icon in Android Studio to test the application.
 
+### Sample Screenshot
+
+<img width="356" alt="image" src="https://user-images.githubusercontent.com/22863383/140436123-7bc3e6bb-54b1-477f-8f84-2f4ec14fb1a7.png">
+
+
