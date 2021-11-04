@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     // class variable declaration
     private String operand1;  // 1st number in the operation
     private String operand2; // 2nd number in the operation
-    private int operationId; // ID of the operation clicked
+    private int mathOperationId; // ID of the operation clicked
     private double doubleResult; // result of math operation
     private boolean isResultDisplayed; // flag to indicate that result has already been calculated and displayed
     private TextView textViewScreen; // instance of the text view screen
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setOperationListener();       // set basic math operation listener
         setSpecialFunctionListener(); // set special math functions listener
         textViewScreen = findViewById(R.id.tv_screen); // get instance of screen text view
+        textViewScreen.setText(digitScreen);
 
     }
 
@@ -168,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
                     digitScreen += "9";
                     break;
                 case R.id.btn_decimal:
-                    // do not allow multiple decimal
                     if (!digitScreen.contains(".")) {
                         if (digitScreen.equals("")) {
                             digitScreen += "0.";
@@ -191,10 +191,10 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View operation) {
 
             if (operation.getId() == R.id.btn_equals) {
-                if (operationId != 0) {
+                if (mathOperationId != 0) { //only proceed if there is an operation clicked
                     if (!isResultDisplayed) {
                         operand2 = digitScreen;
-                        switch (operationId) {
+                        switch (mathOperationId) {
                             case R.id.btn_add:
                                 doubleResult = Double.parseDouble(operand1) + Double.parseDouble(operand2);
                                 break;
@@ -211,11 +211,11 @@ public class MainActivity extends AppCompatActivity {
                                 doubleResult = Double.parseDouble(operand1) % Double.parseDouble(operand2);
                             default:
                         }
-                        // check if value has decimal places
+                        // check if value has decimal places (show an integer if there is no decimal value)
                         if (doubleResult % 1 == 0) {
-                            operand1 = String.valueOf((int) doubleResult); //store result to operand1 for next computation
+                            operand1 = String.valueOf((int) doubleResult);
                         } else {
-                            operand1 = String.valueOf(doubleResult); //store result to operand1 for next computation
+                            operand1 = String.valueOf(doubleResult);
                         }
                         digitScreen = "0";
                         textViewScreen.setText(operand1);
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             } else {
-                operationId = operation.getId();
+                mathOperationId = operation.getId();
                 if (operand1.equals("")) { //only set the value once, in case user clicks an operation multiple times
                     operand1 = digitScreen;
                     digitScreen = "0";
@@ -240,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View function) {
             switch (function.getId()) {
                 case R.id.btn_sqrt:
+                    // compute for the square root
                     double result = Math.sqrt(Double.parseDouble(digitScreen));
                     // check if value has decimal places
                     if (result % 1 == 0) {
@@ -249,18 +250,22 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.btn_factorial:
+                    // compute for the factorial value by calling a recursive method
                     if (Double.parseDouble(digitScreen) % 1 == 0) {
                         digitScreen = String.valueOf(factorial(Integer.parseInt(digitScreen)));
                     } else showToastMessage(getString(R.string.error_message_factorial));
                     break;
                 case R.id.btn_pi:
+                    // pass the PI value (replace the value on the screen)
                     digitScreen = String.valueOf(Math.PI);
                     break;
                 case R.id.btn_percent:
+                    // compute the decimal equivalent of the percentage value
                     digitScreen = String.valueOf(Double.parseDouble(digitScreen) / 100);
                 default:
                     break;
             }
+            // update the screen
             textViewScreen.setText(digitScreen);
         }
     };
@@ -271,7 +276,8 @@ public class MainActivity extends AppCompatActivity {
     private final View.OnClickListener clickClearListener = new View.OnClickListener() {
         @Override
         public void onClick(View button) {
-            operationId = 0;
+            // Initialize values and update the screen
+            mathOperationId = 0;
             operand1 = "";
             operand2 = "";
             doubleResult = 0.0;
@@ -293,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Method for showing any warning/error message
+     * Reusable method for showing any warning/error message
      *
      * @param message - message to be displayed
      */

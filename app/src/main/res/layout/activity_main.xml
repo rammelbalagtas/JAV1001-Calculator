@@ -4,27 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <!-- Calculator screen -->
     <TextView
         android:id="@+id/tv_screen"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="bottom"
+        android:background="#C5CAE9"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="bottom|end"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        android:paddingBottom="8dp"
-        android:text="@string/default_0"
-        android:textColor="@color/white"
-        android:textSize="40sp"
-        android:background="@color/black"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/row1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_weight="2" />
 
+    <!-- Special Functions -->
     <LinearLayout
         android:id="@+id/row1"
         android:layout_width="match_parent"
@@ -32,22 +34,13 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/row2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_screen"
         app:layout_constraintVertical_weight="1">
 
         <Button
-            android:id="@+id/btn_modulo"
-            style="@style/ButtonGrp1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/text_mod" />
-
-        <Button
             android:id="@+id/btn_sqrt"
-            style="@style/ButtonGrp1"
+            style="@style/ButtonGrp3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -55,7 +48,7 @@
 
         <Button
             android:id="@+id/btn_factorial"
-            style="@style/ButtonGrp1"
+            style="@style/ButtonGrp3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -63,7 +56,7 @@
 
         <Button
             android:id="@+id/btn_pi"
-            style="@style/ButtonGrp1"
+            style="@style/ButtonGrp3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -78,19 +71,30 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/row3"
         app:layout_constraintEnd_toEndOf="@+id/row1"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/row1"
         app:layout_constraintTop_toBottomOf="@+id/row1"
         app:layout_constraintVertical_weight="1">
 
+        <!-- Clear button -->
         <Button
             android:id="@+id/btn_clear"
             style="@style/ButtonGrp1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="@string/text_c" />
 
+        <!-- Modulo -->
+        <Button
+            android:id="@+id/btn_modulo"
+            style="@style/ButtonGrp1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/text_mod" />
+
+        <!-- Percentage -->
         <Button
             android:id="@+id/btn_percent"
             style="@style/ButtonGrp1"
@@ -99,9 +103,10 @@
             android:layout_weight="1"
             android:text="@string/text_percent" />
 
+        <!-- Division -->
         <Button
             android:id="@+id/btn_divide"
-            style="@style/ButtonGrp1"
+            style="@style/ButtonGrp2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -144,7 +149,7 @@
 
         <Button
             android:id="@+id/btn_multiply"
-            style="@style/ButtonGrp1"
+            style="@style/ButtonGrp2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -185,10 +190,10 @@
             android:layout_weight="1"
             android:text="@string/text_6" />
 
-
+        <!-- Substraction -->
         <Button
             android:id="@+id/btn_minus"
-            style="@style/ButtonGrp1"
+            style="@style/ButtonGrp2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -229,9 +234,10 @@
             android:layout_weight="1"
             android:text="@string/text_3" />
 
+        <!-- Addition -->
         <Button
             android:id="@+id/btn_add"
-            style="@style/ButtonGrp1"
+            style="@style/ButtonGrp2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -253,7 +259,7 @@
             style="@style/ButtonGrp1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="@string/text_0" />
 
         <Button
@@ -264,12 +270,13 @@
             android:layout_weight="1"
             android:text="@string/text_decimal" />
 
+        <!-- Equals sign -->
         <Button
             android:id="@+id/btn_equals"
-            style="@style/ButtonGrp1"
+            style="@style/ButtonGrp2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:text="@string/text_equals" />
 
     </LinearLayout>
