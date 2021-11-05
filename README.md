@@ -22,6 +22,6 @@ Once all the above conditions are satisfied, just click the 'Run' icon in Androi
 
 ### Sample Screenshot
 
-<img width="356" alt="image" src="https://user-images.githubusercontent.com/22863383/140436123-7bc3e6bb-54b1-477f-8f84-2f4ec14fb1a7.png">
+<img width="328" alt="image" src="https://user-images.githubusercontent.com/22863383/140437905-1cd47cb5-b3e9-453f-a8c3-82bbda7a0263.png">
 
 
